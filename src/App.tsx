@@ -73,7 +73,18 @@ const App = () => {
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Index />} />
+            <Route 
+              path="/" 
+              element={
+                <Index 
+                  favorites={favorites}
+                  viewHistory={viewHistory}
+                  onToggleFavorite={handleToggleFavorite}
+                  onViewDetails={handleViewDetails}
+                  onAddToViewHistory={handleAddToViewHistory}
+                />
+              } 
+            />
             <Route 
               path="/favorites" 
               element={

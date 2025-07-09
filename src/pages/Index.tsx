@@ -1,51 +1,37 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Heart, BookOpen, History, Sparkles, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { SearchBar } from '@/components/SearchBar';
 import { FilterSection } from '@/components/FilterSection';
 import { CourseCard } from '@/components/CourseCard';
-import { ProductModal } from '@/components/ProductModal';
 import { AiSuggestions } from '@/components/AiSuggestions';
 import { ChatBot } from '@/components/ChatBot';
 import { mockCourses, Course, priceRanges } from '@/data/mockData';
 import { useToast } from '@/hooks/use-toast';
 import { Link } from 'react-router-dom';
 
-const Index = () => {
+interface IndexProps {
+  favorites: string[];
+  viewHistory: Course[];
+  onToggleFavorite: (courseId: string) => void;
+  onViewDetails: (course: Course) => void;
+  onAddToViewHistory: (course: Course) => void;
+}
+
+const Index: React.FC<IndexProps> = ({
+  favorites,
+  viewHistory,
+  onToggleFavorite,
+  onViewDetails,
+  onAddToViewHistory
+}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedPriceRange, setSelectedPriceRange] = useState('all');
   const [selectedCategory, setSelectedCategory] = useState('Tất cả');
-  const [favorites, setFavorites] = useState<string[]>([]);
-  const [viewHistory, setViewHistory] = useState<Course[]>([]);
-  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const { toast } = useToast();
-
-  // Load data from localStorage on component mount
-  useEffect(() => {
-    const savedFavorites = localStorage.getItem('favorites');
-    const savedHistory = localStorage.getItem('viewHistory');
-    
-    if (savedFavorites) {
-      setFavorites(JSON.parse(savedFavorites));
-    }
-    if (savedHistory) {
-      setViewHistory(JSON.parse(savedHistory));
-    }
-  }, []);
-
-  // Save favorites to localStorage
-  useEffect(() => {
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-  }, [favorites]);
-
-  // Save view history to localStorage
-  useEffect(() => {
-    localStorage.setItem('viewHistory', JSON.stringify(viewHistory));
-  }, [viewHistory]);
 
   const filteredCourses = mockCourses.filter(course => {
     // Search filter
@@ -66,46 +52,24 @@ const Index = () => {
     return matchesSearch && matchesPrice && matchesCategory;
   });
 
-  const handleToggleFavorite = (courseId: string) => {
-    setFavorites(prev => {
-      const newFavorites = prev.includes(courseId)
-        ? prev.filter(id => id !== courseId)
-        : [...prev, courseId];
-      
-      const course = mockCourses.find(c => c.id === courseId);
-      if (course) {
-        toast({
-          title: prev.includes(courseId) ? "Đã xóa khỏi yêu thích" : "Đã thêm vào yêu thích",
-          description: `${course.title}`,
-          duration: 2000,
-        });
-      }
-      
-      return newFavorites;
-    });
-  };
-
-  const handleViewDetails = (course: Course) => {
-    setSelectedCourse(course);
-    setIsModalOpen(true);
-  };
-
-  const handleAddToViewHistory = (course: Course) => {
-    setViewHistory(prev => {
-      // Remove if already exists to avoid duplicates
-      const filtered = prev.filter(c => c.id !== course.id);
-      // Add to beginning and limit to 20 items
-      return [course, ...filtered].slice(0, 20);
-    });
+  const handleToggleFavoriteWithToast = (courseId: string) => {
+    const course = mockCourses.find(c => c.id === courseId);
+    const isCurrentlyFavorite = favorites.includes(courseId);
+    
+    onToggleFavorite(courseId);
+    
+    if (course) {
+      toast({
+        title: isCurrentlyFavorite ? "Đã xóa khỏi yêu thích" : "Đã thêm vào yêu thích",
+        description: `${course.title}`,
+        duration: 2000,
+      });
+    }
   };
 
   const handleClearFilters = () => {
     setSelectedPriceRange('all');
     setSelectedCategory('Tất cả');
-  };
-
-  const getFavoritesCourses = () => {
-    return mockCourses.filter(course => favorites.includes(course.id));
   };
 
   return (
@@ -204,8 +168,8 @@ const Index = () => {
             {/* AI Suggestions */}
             <AiSuggestions 
               userId="user123"
-              onViewCourse={handleViewDetails}
-              onAddToViewHistory={handleAddToViewHistory}
+              onViewCourse={onViewDetails}
+              onAddToViewHistory={onAddToViewHistory}
             />
 
             {/* View History */}
@@ -219,7 +183,7 @@ const Index = () => {
                   {viewHistory.slice(0, 5).map((course) => (
                     <div 
                       key={course.id}
-                      onClick={() => handleViewDetails(course)}
+                      onClick={() => onViewDetails(course)}
                       className="flex gap-3 p-2 hover:bg-gray-50 rounded cursor-pointer"
                     >
                       <img 
@@ -284,9 +248,9 @@ const Index = () => {
                     key={course.id}
                     course={course}
                     isFavorite={favorites.includes(course.id)}
-                    onToggleFavorite={handleToggleFavorite}
-                    onViewDetails={handleViewDetails}
-                    onAddToViewHistory={handleAddToViewHistory}
+                    onToggleFavorite={handleToggleFavoriteWithToast}
+                    onViewDetails={onViewDetails}
+                    onAddToViewHistory={onAddToViewHistory}
                   />
                 ))}
               </div>
@@ -295,19 +259,10 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Product Modal */}
-      <ProductModal
-        course={selectedCourse}
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        isFavorite={selectedCourse ? favorites.includes(selectedCourse.id) : false}
-        onToggleFavorite={handleToggleFavorite}
-      />
-
       {/* ChatBot */}
       <ChatBot 
-        onViewCourse={handleViewDetails}
-        onAddToViewHistory={handleAddToViewHistory}
+        onViewCourse={onViewDetails}
+        onAddToViewHistory={onAddToViewHistory}
       />
     </div>
   );
