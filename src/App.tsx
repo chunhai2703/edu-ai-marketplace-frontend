@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import { Favorites } from "./pages/Favorites";
 import NotFound from "./pages/NotFound";
 import { ProductModal } from "./components/ProductModal";
+import { Footer } from "./components/Footer";
 import { mockCourses, Course } from "./data/mockData";
 
 const queryClient = new QueryClient();
@@ -72,41 +73,48 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Routes>
-            <Route 
-              path="/" 
-              element={
-                <Index 
-                  favorites={favorites}
-                  viewHistory={viewHistory}
-                  onToggleFavorite={handleToggleFavorite}
-                  onViewDetails={handleViewDetails}
-                  onAddToViewHistory={handleAddToViewHistory}
+          <div className="min-h-screen flex flex-col">
+            <div className="flex-1">
+              <Routes>
+                <Route 
+                  path="/" 
+                  element={
+                    <Index 
+                      favorites={favorites}
+                      viewHistory={viewHistory}
+                      onToggleFavorite={handleToggleFavorite}
+                      onViewDetails={handleViewDetails}
+                      onAddToViewHistory={handleAddToViewHistory}
+                    />
+                  } 
                 />
-              } 
-            />
-            <Route 
-              path="/favorites" 
-              element={
-                <Favorites 
-                  favorites={getFavoritesCourses()}
-                  onToggleFavorite={handleToggleFavorite}
-                  onViewDetails={handleViewDetails}
-                  onAddToViewHistory={handleAddToViewHistory}
+                <Route 
+                  path="/favorites" 
+                  element={
+                    <Favorites 
+                      favorites={getFavoritesCourses()}
+                      onToggleFavorite={handleToggleFavorite}
+                      onViewDetails={handleViewDetails}
+                      onAddToViewHistory={handleAddToViewHistory}
+                    />
+                  } 
                 />
-              } 
-            />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </div>
 
-          {/* Global Product Modal */}
-          <ProductModal
-            course={selectedCourse}
-            isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
-            isFavorite={selectedCourse ? favorites.includes(selectedCourse.id) : false}
-            onToggleFavorite={handleToggleFavorite}
-          />
+            {/* Footer */}
+            <Footer />
+
+            {/* Global Product Modal */}
+            <ProductModal
+              course={selectedCourse}
+              isOpen={isModalOpen}
+              onClose={() => setIsModalOpen(false)}
+              isFavorite={selectedCourse ? favorites.includes(selectedCourse.id) : false}
+              onToggleFavorite={handleToggleFavorite}
+            />
+          </div>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
