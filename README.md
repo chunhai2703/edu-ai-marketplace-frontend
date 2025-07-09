@@ -1,73 +1,188 @@
-# Welcome to your Lovable project
 
-## Project info
+# EduMarket - Sàn Giáo Dục Thương Mại Điện Tử Tích Hợp AI
 
-**URL**: https://lovable.dev/projects/c1ba4b0c-fd6f-4283-9b12-6b26888c9a54
+## 🎯 Giới thiệu
 
-## How can I edit this code?
+EduMarket là một nền tảng giáo dục trực tuyến hiện đại tích hợp AI, cho phép người dùng tìm kiếm, khám phá và yêu thích các khóa học chất lượng cao. Dự án được xây dựng với React, TypeScript và Tailwind CSS, mang đến trải nghiệm người dùng mượt mà và thông minh.
 
-There are several ways of editing your application.
+## ✨ Tính năng chính
 
-**Use Lovable**
+### 🔍 Tìm kiếm và Lọc
+- Tìm kiếm theo tên khóa học, giảng viên, danh mục
+- Lọc theo khoảng giá (< 500K, 500K-1 triệu, > 1 triệu)
+- Lọc theo danh mục (Language Learning, Programming, Design, etc.)
+- Xóa bộ lọc nhanh chóng
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/c1ba4b0c-fd6f-4283-9b12-6b26888c9a54) and start prompting.
+### 🤖 Gợi ý thông minh AI
+- Gợi ý khóa học dựa trên hành vi người dùng
+- API giả lập `/api/suggestions?userId=xxx`
+- Loading skeleton trong quá trình tải
+- Xử lý lỗi API với thông báo thân thiện
+- Làm mới gợi ý theo yêu cầu
 
-Changes made via Lovable will be committed automatically to this repo.
+### ❤️ Quản lý Yêu thích
+- Thêm/xóa khóa học yêu thích
+- Trang danh sách yêu thích riêng biệt
+- Thống kê tổng quan danh sách yêu thích
+- Lưu trữ persistent với localStorage
 
-**Use your preferred IDE**
+### 📱 Modal Chi tiết Sản phẩm
+- Hiển thị thông tin đầy đủ về khóa học
+- Hình ảnh, mô tả, đánh giá, giảng viên
+- Thông tin thời lượng, số học viên, chứng chỉ
+- Tính năng thêm vào giỏ hàng và yêu thích
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 🕐 Lịch sử Xem
+- Theo dõi khóa học đã xem
+- Hiển thị lịch sử 5 khóa học gần nhất
+- Truy cập nhanh đến khóa học đã xem
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### 💬 AI Chatbot Tư vấn
+- Giao diện chat thân thiện
+- Gợi ý khóa học dựa trên từ khóa
+- Hỗ trợ tiếng Việt
+- Hiển thị khóa học liên quan trực tiếp trong chat
 
-Follow these steps:
+## 🛠️ Công nghệ sử dụng
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- **Frontend**: React 18, TypeScript
+- **Styling**: Tailwind CSS, shadcn/ui
+- **State Management**: React Hooks (useState, useEffect)
+- **Routing**: React Router DOM
+- **Icons**: Lucide React
+- **Build Tool**: Vite
+- **Notifications**: Sonner, React Hot Toast
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 🚀 Hướng dẫn chạy dự án
 
-# Step 3: Install the necessary dependencies.
-npm i
+### Yêu cầu hệ thống
+- Node.js 18+ 
+- npm hoặc yarn
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+### Cài đặt và chạy
+
+```bash
+# Clone repository
+git clone <repository-url>
+cd edumarket
+
+# Cài đặt dependencies
+npm install
+
+# Chạy development server
 npm run dev
+
+# Build production
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
-**Edit a file directly in GitHub**
+Ứng dụng sẽ chạy tại `http://localhost:8080`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 📁 Cấu trúc dự án
 
-**Use GitHub Codespaces**
+```
+src/
+├── components/          # React components
+│   ├── ui/             # shadcn/ui components
+│   ├── SearchBar.tsx   # Thanh tìm kiếm
+│   ├── FilterSection.tsx # Bộ lọc
+│   ├── CourseCard.tsx  # Card khóa học
+│   ├── ProductModal.tsx # Modal chi tiết
+│   ├── AiSuggestions.tsx # Gợi ý AI
+│   └── ChatBot.tsx     # AI Chatbot
+├── pages/              # Trang chính
+│   ├── Index.tsx       # Trang chủ
+│   ├── Favorites.tsx   # Trang yêu thích
+│   └── NotFound.tsx    # Trang 404
+├── data/               # Mock data
+│   └── mockData.ts     # Dữ liệu khóa học giả
+├── hooks/              # Custom hooks
+└── lib/                # Utilities
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🎨 Thiết kế UX/UI
 
-## What technologies are used for this project?
+### Màu sắc chủ đạo
+- **Primary**: Blue (#3B82F6) - Chuyên nghiệp, đáng tin cậy
+- **Accent**: Orange (#FB923C) - Năng động, thu hút
+- **Success**: Green (#10B981) - Thành công, hoàn thành
+- **Warning**: Yellow (#F59E0B) - Cảnh báo, chú ý
 
-This project is built with:
+### Responsive Design
+- **Mobile First**: Tối ưu cho thiết bị di động
+- **Breakpoints**: sm (640px), md (768px), lg (1024px), xl (1280px)
+- **Flexible Grid**: CSS Grid và Flexbox
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Hiệu ứng
+- Hover effects mượt mà
+- Loading skeletons
+- Fade in animations
+- Smooth transitions
 
-## How can I deploy this project?
+## 🔧 Tính năng nâng cao
 
-Simply open [Lovable](https://lovable.dev/projects/c1ba4b0c-fd6f-4283-9b12-6b26888c9a54) and click on Share -> Publish.
+### Xử lý lỗi
+- Thông báo lỗi API thân thiện
+- Fallback UI cho trường hợp không có dữ liệu
+- Retry mechanism cho API calls
 
-## Can I connect a custom domain to my Lovable project?
+### Performance
+- Lazy loading cho hình ảnh
+- Debounced search
+- Optimized re-renders
+- Local storage caching
 
-Yes, you can!
+### Accessibility
+- Semantic HTML
+- ARIA labels
+- Keyboard navigation
+- Screen reader support
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 📊 Dữ liệu Mock
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Dự án sử dụng dữ liệu mock được định nghĩa trong `src/data/mockData.ts`:
+
+- **8 khóa học mẫu** với đầy đủ thông tin
+- **Danh mục đa dạng**: Language Learning, Programming, Marketing, Design, Data Science, Creative Arts, Business
+- **Gợi ý AI** cho nhiều user khác nhau
+- **Khoảng giá** từ 500K đến 2 triệu VNĐ
+
+## 🚀 Deployment
+
+Dự án có thể deploy dễ dàng trên:
+- **Vercel** (Recommended)
+- **Netlify** 
+- **GitHub Pages**
+- **Firebase Hosting**
+
+```bash
+# Build production
+npm run build
+
+# Deploy folder dist/ to hosting service
+```
+
+## 🤝 Đóng góp
+
+1. Fork repository
+2. Tạo feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Tạo Pull Request
+
+## 📄 License
+
+Dự án sử dụng license MIT - xem file [LICENSE](LICENSE) để biết thêm chi tiết.
+
+## 📞 Liên hệ
+
+- **Developer**: [Your Name]
+- **Email**: your.email@example.com
+- **GitHub**: [Your GitHub Profile]
+
+---
+
+**EduMarket** - Nơi tri thức gặp gỡ công nghệ! 🚀📚
