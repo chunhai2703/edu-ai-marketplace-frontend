@@ -81,28 +81,6 @@ npm run preview
 
 Ứng dụng sẽ chạy tại `http://localhost:8080`
 
-## 📁 Cấu trúc dự án
-
-```
-src/
-├── components/          # React components
-│   ├── ui/             # shadcn/ui components
-│   ├── SearchBar.tsx   # Thanh tìm kiếm
-│   ├── FilterSection.tsx # Bộ lọc
-│   ├── CourseCard.tsx  # Card khóa học
-│   ├── ProductModal.tsx # Modal chi tiết
-│   ├── AiSuggestions.tsx # Gợi ý AI
-│   └── ChatBot.tsx     # AI Chatbot
-├── pages/              # Trang chính
-│   ├── Index.tsx       # Trang chủ
-│   ├── Favorites.tsx   # Trang yêu thích
-│   └── NotFound.tsx    # Trang 404
-├── data/               # Mock data
-│   └── mockData.ts     # Dữ liệu khóa học giả
-├── hooks/              # Custom hooks
-└── lib/                # Utilities
-```
-
 ## 🎨 Thiết kế UX/UI
 
 ### Màu sắc chủ đạo
@@ -141,15 +119,6 @@ src/
 - Keyboard navigation
 - Screen reader support
 
-## 📊 Dữ liệu Mock
-
-Dự án sử dụng dữ liệu mock được định nghĩa trong `src/data/mockData.ts`:
-
-- **8 khóa học mẫu** với đầy đủ thông tin
-- **Danh mục đa dạng**: Language Learning, Programming, Marketing, Design, Data Science, Creative Arts, Business
-- **Gợi ý AI** cho nhiều user khác nhau
-- **Khoảng giá** từ 500K đến 2 triệu VNĐ
-
 ## 🚀 Deployment
 
 Dự án có thể deploy dễ dàng trên:
@@ -179,9 +148,9 @@ Dự án sử dụng license MIT - xem file [LICENSE](LICENSE) để biết thê
 
 ## 📞 Liên hệ
 
-- **Developer**: [Your Name]
-- **Email**: your.email@example.com
-- **GitHub**: [Your GitHub Profile]
+- **Developer**: [Võ Nguyễn Trung Hải]
+- **Email**: oceanvo437@gmail.com
+- **GitHub**: [chunhai2703]
 
 ---
 
