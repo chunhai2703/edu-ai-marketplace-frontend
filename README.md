@@ -142,10 +142,6 @@ npm run build
 4. Push to branch (`git push origin feature/amazing-feature`)
 5. Tạo Pull Request
 
-## 📄 License
-
-Dự án sử dụng license MIT - xem file [LICENSE](LICENSE) để biết thêm chi tiết.
-
 ## 📞 Liên hệ
 
 - **Developer**: [Võ Nguyễn Trung Hải]
