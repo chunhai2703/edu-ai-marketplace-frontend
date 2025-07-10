@@ -1,7 +1,15 @@
-
-import React from 'react';
-import { BookOpen, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import {
+  BookOpen,
+  Mail,
+  Phone,
+  MapPin,
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const Footer: React.FC = () => {
   return (
@@ -21,19 +29,32 @@ export const Footer: React.FC = () => {
               </div>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
-              Nền tảng giáo dục thông minh hàng đầu Việt Nam, mang đến trải nghiệm học tập cá nhân hóa với công nghệ AI tiên tiến.
+              Nền tảng giáo dục thông minh hàng đầu Việt Nam, mang đến trải
+              nghiệm học tập cá nhân hóa với công nghệ AI tiên tiến.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a
+                href="#"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a
+                href="#"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
                 <Twitter className="h-5 w-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a
+                href="#"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a
+                href="#"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
                 <Linkedin className="h-5 w-5" />
               </a>
             </div>
@@ -44,27 +65,42 @@ export const Footer: React.FC = () => {
             <h4 className="text-lg font-semibold">Liên kết nhanh</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-gray-300 hover:text-white transition-colors text-sm">
+                <Link
+                  to="/"
+                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                >
                   Trang chủ
                 </Link>
               </li>
               <li>
-                <Link to="/favorites" className="text-gray-300 hover:text-white transition-colors text-sm">
+                <Link
+                  to="/favorites"
+                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                >
                   Khóa học yêu thích
                 </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors text-sm">
+                <a
+                  href="#"
+                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                >
                   Danh mục khóa học
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors text-sm">
+                <a
+                  href="#"
+                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                >
                   Giảng viên
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors text-sm">
+                <a
+                  href="#"
+                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                >
                   Về chúng tôi
                 </a>
               </li>
@@ -76,27 +112,42 @@ export const Footer: React.FC = () => {
             <h4 className="text-lg font-semibold">Hỗ trợ</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors text-sm">
+                <a
+                  href="#"
+                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                >
                   Trung tâm trợ giúp
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors text-sm">
+                <a
+                  href="#"
+                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                >
                   Hướng dẫn sử dụng
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors text-sm">
+                <a
+                  href="#"
+                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                >
                   Chính sách bảo mật
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors text-sm">
+                <a
+                  href="#"
+                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                >
                   Điều khoản sử dụng
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors text-sm">
+                <a
+                  href="#"
+                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                >
                   FAQ
                 </a>
               </li>
@@ -109,7 +160,9 @@ export const Footer: React.FC = () => {
             <div className="space-y-3">
               <div className="flex items-center gap-3 text-sm">
                 <MapPin className="h-4 w-4 text-gray-400 flex-shrink-0" />
-                <span className="text-gray-300">123 Đường ABC, Quận 1, TP.HCM</span>
+                <span className="text-gray-300">
+                  123 Đường ABC, Quận 1, TP.HCM
+                </span>
               </div>
               <div className="flex items-center gap-3 text-sm">
                 <Phone className="h-4 w-4 text-gray-400 flex-shrink-0" />
@@ -120,10 +173,12 @@ export const Footer: React.FC = () => {
                 <span className="text-gray-300">support@edumarket.vn</span>
               </div>
             </div>
-            
+
             {/* Newsletter */}
             <div className="pt-4">
-              <h5 className="text-sm font-medium mb-2">Nhận thông tin mới nhất</h5>
+              <h5 className="text-sm font-medium mb-2">
+                Nhận thông tin mới nhất
+              </h5>
               <div className="flex gap-2">
                 <input
                   type="email"
@@ -142,16 +197,25 @@ export const Footer: React.FC = () => {
         <div className="border-t border-gray-800 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-gray-400 text-sm">
-              © 2024 EduMarket. Tất cả quyền được bảo lưu.
+              © 2025 EduMarket. All rights reserved.
             </div>
             <div className="flex gap-6 text-sm">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a
+                href="#"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
                 Chính sách bảo mật
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a
+                href="#"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
                 Điều khoản dịch vụ
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a
+                href="#"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
                 Cookie Policy
               </a>
             </div>

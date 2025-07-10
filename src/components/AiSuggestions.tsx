@@ -1,19 +1,18 @@
-
-import React, { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Skeleton } from '@/components/ui/skeleton';
-import { 
-  Sparkles, 
-  Star, 
-  Clock, 
-  Users, 
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
+import {
+  Sparkles,
+  Star,
+  Clock,
+  Users,
   ChevronRight,
   AlertCircle,
-  RefreshCw
-} from 'lucide-react';
-import { Course, mockSuggestions } from '@/data/mockData';
+  RefreshCw,
+} from "lucide-react";
+import { Course, mockSuggestions } from "@/data/mockData";
 
 interface AiSuggestionsProps {
   userId: string;
@@ -24,7 +23,7 @@ interface AiSuggestionsProps {
 export const AiSuggestions: React.FC<AiSuggestionsProps> = ({
   userId,
   onViewCourse,
-  onAddToViewHistory
+  onAddToViewHistory,
 }) => {
   const [suggestions, setSuggestions] = useState<Course[]>([]);
   const [loading, setLoading] = useState(false);
@@ -34,21 +33,23 @@ export const AiSuggestions: React.FC<AiSuggestionsProps> = ({
   const fetchSuggestions = async () => {
     setLoading(true);
     setError(null);
-    
+
     try {
       // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
       // Simulate API success/failure (90% success rate)
       if (Math.random() < 0.9) {
-        const userSuggestions = mockSuggestions[userId as keyof typeof mockSuggestions] || mockSuggestions["user123"];
+        const userSuggestions =
+          mockSuggestions[userId as keyof typeof mockSuggestions] ||
+          mockSuggestions["user123"];
         setSuggestions(userSuggestions);
         setHasLoaded(true);
       } else {
-        throw new Error('Failed to fetch suggestions');
+        throw new Error("Failed to fetch suggestions");
       }
     } catch (err) {
-      setError('Không thể lấy gợi ý lúc này. Vui lòng thử lại sau.');
+      setError("Không thể lấy gợi ý lúc này. Vui lòng thử lại sau.");
       setSuggestions([]);
     } finally {
       setLoading(false);
@@ -56,9 +57,9 @@ export const AiSuggestions: React.FC<AiSuggestionsProps> = ({
   };
 
   const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('vi-VN', {
-      style: 'currency',
-      currency: 'VND'
+    return new Intl.NumberFormat("vi-VN", {
+      style: "currency",
+      currency: "VND",
     }).format(price);
   };
 
@@ -88,7 +89,7 @@ export const AiSuggestions: React.FC<AiSuggestionsProps> = ({
             <p className="text-gray-600 mb-4">
               AI sẽ phân tích sở thích và đưa ra gợi ý tốt nhất
             </p>
-            <Button 
+            <Button
               onClick={fetchSuggestions}
               className="bg-blue-600 hover:bg-blue-700"
             >
@@ -102,7 +103,9 @@ export const AiSuggestions: React.FC<AiSuggestionsProps> = ({
           <div className="space-y-4">
             <div className="flex items-center gap-2 text-blue-600">
               <RefreshCw className="h-4 w-4 animate-spin" />
-              <span className="text-sm font-medium">AI đang phân tích sở thích của bạn...</span>
+              <span className="text-sm font-medium">
+                AI đang phân tích sở thích của bạn...
+              </span>
             </div>
             {[1, 2, 3].map((index) => (
               <div key={index} className="flex gap-4 p-4 bg-white rounded-lg">
@@ -122,7 +125,7 @@ export const AiSuggestions: React.FC<AiSuggestionsProps> = ({
             <AlertCircle className="h-12 w-12 text-red-400 mx-auto mb-4" />
             <h3 className="font-semibold text-gray-900 mb-2">Có lỗi xảy ra</h3>
             <p className="text-red-600 mb-4">{error}</p>
-            <Button 
+            <Button
               onClick={fetchSuggestions}
               variant="outline"
               className="border-red-200 text-red-600 hover:bg-red-50"
@@ -139,27 +142,29 @@ export const AiSuggestions: React.FC<AiSuggestionsProps> = ({
               <h4 className="font-semibold text-gray-900">
                 Khóa học được gợi ý cho bạn
               </h4>
-              <Button 
+              <Button
                 onClick={fetchSuggestions}
                 variant="outline"
                 size="sm"
                 disabled={loading}
               >
-                <RefreshCw className={`h-4 w-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
+                <RefreshCw
+                  className={`h-4 w-4 mr-2 ${loading ? "animate-spin" : ""}`}
+                />
                 Làm mới
               </Button>
             </div>
-            
+
             {suggestions.map((course) => (
-              <div 
-                key={course.id} 
-                className="flex gap-4 p-4 bg-white rounded-lg hover:shadow-md transition-shadow cursor-pointer border"
+              <div
+                key={course.id}
+                className="flex lg:flex-col gap-4 p-4 bg-white rounded-lg hover:shadow-md transition-shadow cursor-pointer border"
                 onClick={() => handleViewCourse(course)}
               >
-                <img 
-                  src={course.image} 
+                <img
+                  src={course.image}
                   alt={course.title}
-                  className="h-16 w-24 object-cover rounded"
+                  className="h-16 w-24 object-cover rounded lg:w-full lg:h-32"
                 />
                 <div className="flex-1 min-w-0">
                   <h5 className="font-medium text-gray-900 truncate mb-1">
@@ -191,10 +196,10 @@ export const AiSuggestions: React.FC<AiSuggestionsProps> = ({
                     </Badge>
                   </div>
                 </div>
-                <ChevronRight className="h-5 w-5 text-gray-400 self-center" />
+                <ChevronRight className="h-5 w-5 text-gray-400 self-center lg:hidden" />
               </div>
             ))}
-            
+
             <div className="text-center pt-2">
               <p className="text-xs text-gray-500">
                 💡 Gợi ý dựa trên khóa học đã xem và sở thích của bạn

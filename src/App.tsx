@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -22,9 +21,9 @@ const App = () => {
 
   // Load data from localStorage on component mount
   useEffect(() => {
-    const savedFavorites = localStorage.getItem('favorites');
-    const savedHistory = localStorage.getItem('viewHistory');
-    
+    const savedFavorites = localStorage.getItem("favorites");
+    const savedHistory = localStorage.getItem("viewHistory");
+
     if (savedFavorites) {
       setFavorites(JSON.parse(savedFavorites));
     }
@@ -35,18 +34,18 @@ const App = () => {
 
   // Save favorites to localStorage
   useEffect(() => {
-    localStorage.setItem('favorites', JSON.stringify(favorites));
+    sessionStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
 
   // Save view history to localStorage
   useEffect(() => {
-    localStorage.setItem('viewHistory', JSON.stringify(viewHistory));
+    sessionStorage.setItem("viewHistory", JSON.stringify(viewHistory));
   }, [viewHistory]);
 
   const handleToggleFavorite = (courseId: string) => {
-    setFavorites(prev => 
+    setFavorites((prev) =>
       prev.includes(courseId)
-        ? prev.filter(id => id !== courseId)
+        ? prev.filter((id) => id !== courseId)
         : [...prev, courseId]
     );
   };
@@ -57,14 +56,14 @@ const App = () => {
   };
 
   const handleAddToViewHistory = (course: Course) => {
-    setViewHistory(prev => {
-      const filtered = prev.filter(c => c.id !== course.id);
+    setViewHistory((prev) => {
+      const filtered = prev.filter((c) => c.id !== course.id);
       return [course, ...filtered].slice(0, 20);
     });
   };
 
   const getFavoritesCourses = () => {
-    return mockCourses.filter(course => favorites.includes(course.id));
+    return mockCourses.filter((course) => favorites.includes(course.id));
   };
 
   return (
@@ -76,28 +75,28 @@ const App = () => {
           <div className="min-h-screen flex flex-col">
             <div className="flex-1">
               <Routes>
-                <Route 
-                  path="/" 
+                <Route
+                  path="/"
                   element={
-                    <Index 
+                    <Index
                       favorites={favorites}
                       viewHistory={viewHistory}
                       onToggleFavorite={handleToggleFavorite}
                       onViewDetails={handleViewDetails}
                       onAddToViewHistory={handleAddToViewHistory}
                     />
-                  } 
+                  }
                 />
-                <Route 
-                  path="/favorites" 
+                <Route
+                  path="/favorites"
                   element={
-                    <Favorites 
+                    <Favorites
                       favorites={getFavoritesCourses()}
                       onToggleFavorite={handleToggleFavorite}
                       onViewDetails={handleViewDetails}
                       onAddToViewHistory={handleAddToViewHistory}
                     />
-                  } 
+                  }
                 />
                 <Route path="*" element={<NotFound />} />
               </Routes>
@@ -111,7 +110,9 @@ const App = () => {
               course={selectedCourse}
               isOpen={isModalOpen}
               onClose={() => setIsModalOpen(false)}
-              isFavorite={selectedCourse ? favorites.includes(selectedCourse.id) : false}
+              isFavorite={
+                selectedCourse ? favorites.includes(selectedCourse.id) : false
+              }
               onToggleFavorite={handleToggleFavorite}
             />
           </div>

@@ -37,7 +37,7 @@ export const mockCourses: Course[] = [
     category: 'Language Learning',
     skills: ['Conversation', 'Pronunciation', 'Grammar', 'Listening'],
     language: 'English',
-    lastUpdated: '2024-01-15',
+    lastUpdated: '2025-01-15',
     students: 15420,
     certificate: true
   },
@@ -57,13 +57,13 @@ export const mockCourses: Course[] = [
     category: 'Programming',
     skills: ['React', 'TypeScript', 'Redux', 'Testing', 'Deployment'],
     language: 'Vietnamese',
-    lastUpdated: '2024-01-10',
+    lastUpdated: '2025-01-10',
     students: 8934,
     certificate: true
   },
   {
     id: '3',
-    title: 'Digital Marketing Mastery 2024',
+    title: 'Digital Marketing Mastery 2025',
     price: 799000,
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop',
     shortDescription: 'Complete digital marketing course covering SEO, social media, PPC, and analytics.',
@@ -76,7 +76,7 @@ export const mockCourses: Course[] = [
     category: 'Marketing',
     skills: ['SEO', 'Social Media', 'PPC', 'Analytics', 'Content Marketing'],
     language: 'English',
-    lastUpdated: '2024-01-20',
+    lastUpdated: '2025-01-20',
     students: 12678,
     certificate: true
   },
@@ -96,7 +96,7 @@ export const mockCourses: Course[] = [
     category: 'Design',
     skills: ['Design Thinking', 'User Research', 'Prototyping', 'Figma', 'User Testing'],
     language: 'Vietnamese',
-    lastUpdated: '2024-01-12',
+    lastUpdated: '2025-01-12',
     students: 7832,
     certificate: true
   },
@@ -115,7 +115,7 @@ export const mockCourses: Course[] = [
     category: 'Data Science',
     skills: ['Python', 'Pandas', 'Machine Learning', 'TensorFlow', 'Data Visualization'],
     language: 'English',
-    lastUpdated: '2024-01-08',
+    lastUpdated: '2025-01-08',
     students: 6543,
     certificate: true
   },
@@ -135,7 +135,7 @@ export const mockCourses: Course[] = [
     category: 'Language Learning',
     skills: ['Hiragana', 'Katakana', 'Basic Kanji', 'Grammar', 'Conversation'],
     language: 'Vietnamese',
-    lastUpdated: '2024-01-18',
+    lastUpdated: '2025-01-18',
     students: 9876,
     certificate: true
   },
@@ -154,7 +154,7 @@ export const mockCourses: Course[] = [
     category: 'Creative Arts',
     skills: ['Camera Basics', 'Composition', 'Lighting', 'Lightroom', 'Portfolio'],
     language: 'English',
-    lastUpdated: '2024-01-14',
+    lastUpdated: '2025-01-14',
     students: 11234,
     certificate: true
   },
@@ -174,7 +174,7 @@ export const mockCourses: Course[] = [
     category: 'Business',
     skills: ['Business Analysis', 'Project Management', 'Agile', 'Scrum', 'Risk Management'],
     language: 'Vietnamese',
-    lastUpdated: '2024-01-16',
+    lastUpdated: '2025-01-16',
     students: 5678,
     certificate: true
   }

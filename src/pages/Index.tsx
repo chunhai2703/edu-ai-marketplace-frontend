@@ -1,16 +1,16 @@
-
-import React, { useState } from 'react';
-import { Heart, BookOpen, History, Sparkles, Menu } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { SearchBar } from '@/components/SearchBar';
-import { FilterSection } from '@/components/FilterSection';
-import { CourseCard } from '@/components/CourseCard';
-import { AiSuggestions } from '@/components/AiSuggestions';
-import { ChatBot } from '@/components/ChatBot';
-import { mockCourses, Course, priceRanges } from '@/data/mockData';
-import { useToast } from '@/hooks/use-toast';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Heart, BookOpen, History, Sparkles, Menu } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { SearchBar } from "@/components/SearchBar";
+import { FilterSection } from "@/components/FilterSection";
+import { CourseCard } from "@/components/CourseCard";
+import { AiSuggestions } from "@/components/AiSuggestions";
+import { ChatBot } from "@/components/ChatBot";
+import { mockCourses, Course, priceRanges } from "@/data/mockData";
+import { useToast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
+import logo from "../components/assets/logo.png";
 
 interface IndexProps {
   favorites: string[];
@@ -25,42 +25,47 @@ const Index: React.FC<IndexProps> = ({
   viewHistory,
   onToggleFavorite,
   onViewDetails,
-  onAddToViewHistory
+  onAddToViewHistory,
 }) => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedPriceRange, setSelectedPriceRange] = useState('all');
-  const [selectedCategory, setSelectedCategory] = useState('Tất cả');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedPriceRange, setSelectedPriceRange] = useState("all");
+  const [selectedCategory, setSelectedCategory] = useState("Tất cả");
   const [showHistory, setShowHistory] = useState(false);
   const { toast } = useToast();
 
-  const filteredCourses = mockCourses.filter(course => {
+  const filteredCourses = mockCourses.filter((course) => {
     // Search filter
-    const matchesSearch = course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         course.instructor.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         course.category.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch =
+      course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      course.instructor.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      course.category.toLowerCase().includes(searchTerm.toLowerCase());
 
     // Price filter
     let matchesPrice = true;
-    if (selectedPriceRange !== 'all') {
+    if (selectedPriceRange !== "all") {
       const priceRange = priceRanges[parseInt(selectedPriceRange) + 1];
-      matchesPrice = course.price >= priceRange.min && course.price <= priceRange.max;
+      matchesPrice =
+        course.price >= priceRange.min && course.price <= priceRange.max;
     }
 
     // Category filter
-    const matchesCategory = selectedCategory === 'Tất cả' || course.category === selectedCategory;
+    const matchesCategory =
+      selectedCategory === "Tất cả" || course.category === selectedCategory;
 
     return matchesSearch && matchesPrice && matchesCategory;
   });
 
   const handleToggleFavoriteWithToast = (courseId: string) => {
-    const course = mockCourses.find(c => c.id === courseId);
+    const course = mockCourses.find((c) => c.id === courseId);
     const isCurrentlyFavorite = favorites.includes(courseId);
-    
+
     onToggleFavorite(courseId);
-    
+
     if (course) {
       toast({
-        title: isCurrentlyFavorite ? "Đã xóa khỏi yêu thích" : "Đã thêm vào yêu thích",
+        title: isCurrentlyFavorite
+          ? "Đã xóa khỏi yêu thích"
+          : "Đã thêm vào yêu thích",
         description: `${course.title}`,
         duration: 2000,
       });
@@ -68,8 +73,8 @@ const Index: React.FC<IndexProps> = ({
   };
 
   const handleClearFilters = () => {
-    setSelectedPriceRange('all');
-    setSelectedCategory('Tất cả');
+    setSelectedPriceRange("all");
+    setSelectedCategory("Tất cả");
   };
 
   return (
@@ -80,9 +85,7 @@ const Index: React.FC<IndexProps> = ({
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <BookOpen className="h-6 w-6 text-white" />
-              </div>
+              <img src={logo} alt="Logo" className="h-10 w-10 rounded-full" />
               <div>
                 <h1 className="text-xl font-bold text-gray-900">EduMarket</h1>
                 <p className="text-xs text-gray-500">AI-Powered Learning</p>
@@ -91,7 +94,7 @@ const Index: React.FC<IndexProps> = ({
 
             {/* Search Bar */}
             <div className="hidden md:flex flex-1 max-w-md mx-8">
-              <SearchBar 
+              <SearchBar
                 searchTerm={searchTerm}
                 onSearchChange={setSearchTerm}
                 placeholder="Tìm kiếm khóa học, giảng viên..."
@@ -109,7 +112,7 @@ const Index: React.FC<IndexProps> = ({
                 <History className="h-4 w-4 mr-2" />
                 Lịch sử ({viewHistory.length})
               </Button>
-              
+
               <Link to="/favorites">
                 <Button variant="ghost" size="sm">
                   <Heart className="h-4 w-4 mr-2" />
@@ -125,7 +128,7 @@ const Index: React.FC<IndexProps> = ({
 
           {/* Mobile Search */}
           <div className="md:hidden pb-4">
-            <SearchBar 
+            <SearchBar
               searchTerm={searchTerm}
               onSearchChange={setSearchTerm}
               placeholder="Tìm kiếm khóa học..."
@@ -145,15 +148,24 @@ const Index: React.FC<IndexProps> = ({
             Hơn 10,000+ khóa học chất lượng cao với gợi ý cá nhân hóa từ AI
           </p>
           <div className="flex flex-wrap gap-4 justify-center animate-fade-in">
-            <Badge variant="secondary" className="bg-white/20 text-white text-sm px-4 py-2">
+            <Badge
+              variant="secondary"
+              className="bg-white/20 text-white text-sm px-4 py-2"
+            >
               <Sparkles className="h-4 w-4 mr-2" />
               Gợi ý thông minh
             </Badge>
-            <Badge variant="secondary" className="bg-white/20 text-white text-sm px-4 py-2">
+            <Badge
+              variant="secondary"
+              className="bg-white/20 text-white text-sm px-4 py-2"
+            >
               <BookOpen className="h-4 w-4 mr-2" />
               Chứng chỉ quốc tế
             </Badge>
-            <Badge variant="secondary" className="bg-white/20 text-white text-sm px-4 py-2">
+            <Badge
+              variant="secondary"
+              className="bg-white/20 text-white text-sm px-4 py-2"
+            >
               <Heart className="h-4 w-4 mr-2" />
               Học tập cá nhân hóa
             </Badge>
@@ -166,8 +178,8 @@ const Index: React.FC<IndexProps> = ({
           {/* Sidebar */}
           <div className="space-y-6">
             {/* AI Suggestions */}
-            <AiSuggestions 
-              userId="user123"
+            <AiSuggestions
+              userId="user789"
               onViewCourse={onViewDetails}
               onAddToViewHistory={onAddToViewHistory}
             />
@@ -181,13 +193,13 @@ const Index: React.FC<IndexProps> = ({
                 </h3>
                 <div className="space-y-3">
                   {viewHistory.slice(0, 5).map((course) => (
-                    <div 
+                    <div
                       key={course.id}
                       onClick={() => onViewDetails(course)}
                       className="flex gap-3 p-2 hover:bg-gray-50 rounded cursor-pointer"
                     >
-                      <img 
-                        src={course.image} 
+                      <img
+                        src={course.image}
                         alt={course.title}
                         className="h-12 w-16 object-cover rounded"
                       />
@@ -195,7 +207,9 @@ const Index: React.FC<IndexProps> = ({
                         <h4 className="font-medium text-sm text-gray-900 truncate">
                           {course.title}
                         </h4>
-                        <p className="text-xs text-gray-500">{course.instructor}</p>
+                        <p className="text-xs text-gray-500">
+                          {course.instructor}
+                        </p>
                       </div>
                     </div>
                   ))}
@@ -260,7 +274,7 @@ const Index: React.FC<IndexProps> = ({
       </div>
 
       {/* ChatBot */}
-      <ChatBot 
+      <ChatBot
         onViewCourse={onViewDetails}
         onAddToViewHistory={onAddToViewHistory}
       />

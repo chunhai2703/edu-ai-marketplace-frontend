@@ -1,9 +1,8 @@
-
-import React from 'react';
-import { Heart, Star, Clock, Users, Award, ChevronRight } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Course } from '@/data/mockData';
+import React from "react";
+import { Heart, Star, Clock, Users, Award, ChevronRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Course } from "@/data/mockData";
 
 interface CourseCardProps {
   course: Course;
@@ -18,12 +17,12 @@ export const CourseCard: React.FC<CourseCardProps> = ({
   isFavorite,
   onToggleFavorite,
   onViewDetails,
-  onAddToViewHistory
+  onAddToViewHistory,
 }) => {
   const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('vi-VN', {
-      style: 'currency',
-      currency: 'VND'
+    return new Intl.NumberFormat("vi-VN", {
+      style: "currency",
+      currency: "VND",
     }).format(price);
   };
 
@@ -32,16 +31,18 @@ export const CourseCard: React.FC<CourseCardProps> = ({
     onViewDetails(course);
   };
 
-  const discountPercent = course.originalPrice 
-    ? Math.round(((course.originalPrice - course.price) / course.originalPrice) * 100)
+  const discountPercent = course.originalPrice
+    ? Math.round(
+        ((course.originalPrice - course.price) / course.originalPrice) * 100
+      )
     : 0;
 
   return (
     <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover-lift overflow-hidden border border-gray-100 flex flex-col h-full">
       {/* Course Image */}
       <div className="relative flex-shrink-0">
-        <img 
-          src={course.image} 
+        <img
+          src={course.image}
           alt={course.title}
           className="w-full h-48 object-cover"
         />
@@ -53,15 +54,15 @@ export const CourseCard: React.FC<CourseCardProps> = ({
         <button
           onClick={() => onToggleFavorite(course.id)}
           className={`absolute top-3 right-3 p-2 rounded-full transition-colors ${
-            isFavorite 
-              ? 'bg-red-500 text-white hover:bg-red-600' 
-              : 'bg-white text-gray-400 hover:text-red-500'
+            isFavorite
+              ? "bg-red-500 text-white hover:bg-red-600"
+              : "bg-white text-gray-400 hover:text-red-500"
           }`}
         >
-          <Heart className={`h-4 w-4 ${isFavorite ? 'fill-current' : ''}`} />
+          <Heart className={`h-4 w-4 ${isFavorite ? "fill-current" : ""}`} />
         </button>
-        <Badge 
-          variant="secondary" 
+        <Badge
+          variant="secondary"
           className="absolute bottom-3 left-3 bg-white/90 text-gray-700 text-xs"
         >
           {course.level}
@@ -78,7 +79,9 @@ export const CourseCard: React.FC<CourseCardProps> = ({
           <div className="flex items-center gap-1 flex-shrink-0">
             <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
             <span className="text-sm font-medium">{course.rating}</span>
-            <span className="text-xs text-gray-500">({course.reviewCount})</span>
+            <span className="text-xs text-gray-500">
+              ({course.reviewCount})
+            </span>
           </div>
         </div>
 
@@ -105,7 +108,9 @@ export const CourseCard: React.FC<CourseCardProps> = ({
           </div>
           <div className="flex items-center gap-1 whitespace-nowrap">
             <Users className="h-3 w-3 flex-shrink-0" />
-            <span className="truncate">{course.students.toLocaleString()} học viên</span>
+            <span className="truncate">
+              {course.students.toLocaleString()} học viên
+            </span>
           </div>
           {course.certificate && (
             <div className="flex items-center gap-1 whitespace-nowrap">
@@ -118,7 +123,11 @@ export const CourseCard: React.FC<CourseCardProps> = ({
         {/* Skills */}
         <div className="flex flex-wrap gap-1 mb-4">
           {course.skills.slice(0, 2).map((skill) => (
-            <Badge key={skill} variant="secondary" className="text-xs truncate max-w-[80px]">
+            <Badge
+              key={skill}
+              variant="secondary"
+              className="text-xs truncate max-w-[200px]"
+            >
               {skill}
             </Badge>
           ))}
@@ -143,7 +152,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({
               )}
             </div>
           </div>
-          <Button 
+          <Button
             onClick={handleViewDetails}
             className="bg-primary hover:bg-primary/90 text-white flex-shrink-0 text-sm px-3 py-2"
             size="sm"
