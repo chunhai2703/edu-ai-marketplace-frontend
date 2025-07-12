@@ -15,9 +15,7 @@ EduMarket là một nền tảng giáo dục trực tuyến hiện đại tích 
 
 ### 🤖 Gợi ý thông minh AI
 - Gợi ý khóa học dựa trên hành vi người dùng
-- API giả lập `/api/suggestions?userId=xxx`
 - Loading skeleton trong quá trình tải
-- Xử lý lỗi API với thông báo thân thiện
 - Làm mới gợi ý theo yêu cầu
 
 ### ❤️ Quản lý Yêu thích
